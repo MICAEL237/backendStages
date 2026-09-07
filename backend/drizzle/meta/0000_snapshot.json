@@ -1,0 +1,892 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "id": "6278ebf3-2e72-4a25-af44-099d40ed2809",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "role": {
+      "name": "role",
+      "columns": {
+        "id_role": {
+          "name": "id_role",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "statuUser": {
+          "name": "statuUser",
+          "type": "enum('admin','User')",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cree_le": {
+          "name": "cree_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "mod_le": {
+          "name": "mod_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "role_id_role": {
+          "name": "role_id_role",
+          "columns": [
+            "id_role"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "classe": {
+      "name": "classe",
+      "columns": {
+        "id_classe": {
+          "name": "id_classe",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "niveau": {
+          "name": "niveau",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "cycle": {
+          "name": "cycle",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "sous_section": {
+          "name": "sous_section",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "cree_le": {
+          "name": "cree_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "mod_le": {
+          "name": "mod_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "classe_id_classe": {
+          "name": "classe_id_classe",
+          "columns": [
+            "id_classe"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "eleve": {
+      "name": "eleve",
+      "columns": {
+        "id_ele": {
+          "name": "id_ele",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "matricule": {
+          "name": "matricule",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nom": {
+          "name": "nom",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "prenom": {
+          "name": "prenom",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "date_naiss": {
+          "name": "date_naiss",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "lieu_naiss": {
+          "name": "lieu_naiss",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sexe": {
+          "name": "sexe",
+          "type": "enum('M','F')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "cree_le": {
+          "name": "cree_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "mod_le": {
+          "name": "mod_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "eleve_id_ele": {
+          "name": "eleve_id_ele",
+          "columns": [
+            "id_ele"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "eleve_matricule_unique": {
+          "name": "eleve_matricule_unique",
+          "columns": [
+            "matricule"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "elevesalle": {
+      "name": "elevesalle",
+      "columns": {
+        "id_salle": {
+          "name": "id_salle",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_ele": {
+          "name": "id_ele",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "annee": {
+          "name": "annee",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "elevesalle_id_salle_salles_id_salle_fk": {
+          "name": "elevesalle_id_salle_salles_id_salle_fk",
+          "tableFrom": "elevesalle",
+          "tableTo": "salles",
+          "columnsFrom": [
+            "id_salle"
+          ],
+          "columnsTo": [
+            "id_salle"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "elevesalle_id_ele_eleve_id_ele_fk": {
+          "name": "elevesalle_id_ele_eleve_id_ele_fk",
+          "tableFrom": "elevesalle",
+          "tableTo": "eleve",
+          "columnsFrom": [
+            "id_ele"
+          ],
+          "columnsTo": [
+            "id_ele"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "cle_primaire": {
+          "name": "cle_primaire",
+          "columns": [
+            "id_ele",
+            "id_salle"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "matiere": {
+      "name": "matiere",
+      "columns": {
+        "id_matiere": {
+          "name": "id_matiere",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "intitule": {
+          "name": "intitule",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cree_le": {
+          "name": "cree_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "mod_le": {
+          "name": "mod_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "matiere_id_matiere": {
+          "name": "matiere_id_matiere",
+          "columns": [
+            "id_matiere"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "matieresalle": {
+      "name": "matieresalle",
+      "columns": {
+        "id_matiere": {
+          "name": "id_matiere",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_salle": {
+          "name": "id_salle",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "coef": {
+          "name": "coef",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "annee": {
+          "name": "annee",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "matieresalle_id_matiere_matiere_id_matiere_fk": {
+          "name": "matieresalle_id_matiere_matiere_id_matiere_fk",
+          "tableFrom": "matieresalle",
+          "tableTo": "matiere",
+          "columnsFrom": [
+            "id_matiere"
+          ],
+          "columnsTo": [
+            "id_matiere"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "matieresalle_id_salle_salles_id_salle_fk": {
+          "name": "matieresalle_id_salle_salles_id_salle_fk",
+          "tableFrom": "matieresalle",
+          "tableTo": "salles",
+          "columnsFrom": [
+            "id_salle"
+          ],
+          "columnsTo": [
+            "id_salle"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "cle_primaire": {
+          "name": "cle_primaire",
+          "columns": [
+            "id_matiere",
+            "id_salle"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "note": {
+      "name": "note",
+      "columns": {
+        "id_note": {
+          "name": "id_note",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "valeur": {
+          "name": "valeur",
+          "type": "float",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sequence": {
+          "name": "sequence",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "cree_le": {
+          "name": "cree_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "mod_le": {
+          "name": "mod_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "anneeScolaire": {
+          "name": "anneeScolaire",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "id_matiere": {
+          "name": "id_matiere",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "id_ele": {
+          "name": "id_ele",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "note_id_matiere_matiere_id_matiere_fk": {
+          "name": "note_id_matiere_matiere_id_matiere_fk",
+          "tableFrom": "note",
+          "tableTo": "matiere",
+          "columnsFrom": [
+            "id_matiere"
+          ],
+          "columnsTo": [
+            "id_matiere"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "note_id_ele_eleve_id_ele_fk": {
+          "name": "note_id_ele_eleve_id_ele_fk",
+          "tableFrom": "note",
+          "tableTo": "eleve",
+          "columnsFrom": [
+            "id_ele"
+          ],
+          "columnsTo": [
+            "id_ele"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "note_id_note": {
+          "name": "note_id_note",
+          "columns": [
+            "id_note"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "salles": {
+      "name": "salles",
+      "columns": {
+        "id_salle": {
+          "name": "id_salle",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nom_salle": {
+          "name": "nom_salle",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "effectif": {
+          "name": "effectif",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "cree_le": {
+          "name": "cree_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "mod_le": {
+          "name": "mod_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "id_classe": {
+          "name": "id_classe",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "id_serie": {
+          "name": "id_serie",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "salles_id_classe_classe_id_classe_fk": {
+          "name": "salles_id_classe_classe_id_classe_fk",
+          "tableFrom": "salles",
+          "tableTo": "classe",
+          "columnsFrom": [
+            "id_classe"
+          ],
+          "columnsTo": [
+            "id_classe"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "salles_id_serie_serie_id_serie_fk": {
+          "name": "salles_id_serie_serie_id_serie_fk",
+          "tableFrom": "salles",
+          "tableTo": "serie",
+          "columnsFrom": [
+            "id_serie"
+          ],
+          "columnsTo": [
+            "id_serie"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "salles_id_salle": {
+          "name": "salles_id_salle",
+          "columns": [
+            "id_salle"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "salles_nom_salle_unique": {
+          "name": "salles_nom_salle_unique",
+          "columns": [
+            "nom_salle"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "serie": {
+      "name": "serie",
+      "columns": {
+        "id_serie": {
+          "name": "id_serie",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "intitule": {
+          "name": "intitule",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "code": {
+          "name": "code",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "cree_le": {
+          "name": "cree_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "mod_le": {
+          "name": "mod_le",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "serie_id_serie": {
+          "name": "serie_id_serie",
+          "columns": [
+            "id_serie"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "serie_code_unique": {
+          "name": "serie_code_unique",
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "usermatiere": {
+      "name": "usermatiere",
+      "columns": {
+        "int_ur": {
+          "name": "int_ur",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_matiere": {
+          "name": "id_matiere",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "annee": {
+          "name": "annee",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "usermatiere_int_ur_users_id_ur_fk": {
+          "name": "usermatiere_int_ur_users_id_ur_fk",
+          "tableFrom": "usermatiere",
+          "tableTo": "users",
+          "columnsFrom": [
+            "int_ur"
+          ],
+          "columnsTo": [
+            "id_ur"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "usermatiere_id_matiere_matiere_id_matiere_fk": {
+          "name": "usermatiere_id_matiere_matiere_id_matiere_fk",
+          "tableFrom": "usermatiere",
+          "tableTo": "matiere",
+          "columnsFrom": [
+            "id_matiere"
+          ],
+          "columnsTo": [
+            "id_matiere"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "clePrimaire": {
+          "name": "clePrimaire",
+          "columns": [
+            "id_matiere",
+            "int_ur"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "id_ur": {
+          "name": "id_ur",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "specialite": {
+          "name": "specialite",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tel": {
+          "name": "tel",
+          "type": "varchar(25)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(15)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "id_role": {
+          "name": "id_role",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "users_id_role_role_id_role_fk": {
+          "name": "users_id_role_role_id_role_fk",
+          "tableFrom": "users",
+          "tableTo": "role",
+          "columnsFrom": [
+            "id_role"
+          ],
+          "columnsTo": [
+            "id_role"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "users_id_ur": {
+          "name": "users_id_ur",
+          "columns": [
+            "id_ur"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "username": {
+      "name": "username",
+      "columns": {
+        "int_ur": {
+          "name": "int_ur",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_salle": {
+          "name": "id_salle",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "annee": {
+          "name": "annee",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "titulaire": {
+          "name": "titulaire",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "username_int_ur_users_id_ur_fk": {
+          "name": "username_int_ur_users_id_ur_fk",
+          "tableFrom": "username",
+          "tableTo": "users",
+          "columnsFrom": [
+            "int_ur"
+          ],
+          "columnsTo": [
+            "id_ur"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "username_id_salle_salles_id_salle_fk": {
+          "name": "username_id_salle_salles_id_salle_fk",
+          "tableFrom": "username",
+          "tableTo": "salles",
+          "columnsFrom": [
+            "id_salle"
+          ],
+          "columnsTo": [
+            "id_salle"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "preimary_key": {
+          "name": "preimary_key",
+          "columns": [
+            "id_salle",
+            "int_ur"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}

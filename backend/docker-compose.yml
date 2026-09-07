@@ -1,18 +1,15 @@
 services:
-  mysql:
+  mysql-db:
     image: mysql:8.0
-    container_name: mysql-db
+    container_name: drizzle-mysql-container_name
     restart: always
-
     environment:
       MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: prisma_db
-      MYSQL_USER: micael
-      MYSQL_PASSWORD: micael123
-
+      MYSQL_DATABASE: schooldatabase
+      MYSQL_USER: micael123
+      MYSQL_PASSWORD: dev123
     ports:
       - "3306:3306"
-
     volumes:
       - mysql_data:/var/lib/mysql
 
