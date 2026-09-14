@@ -1,5 +1,4 @@
-import { mysqlTable,float, varchar, int, timestamp, mysqlEnum, date, primaryKey, boolean } from 'drizzle-orm/mysql-core';
-
+import { mysqlTable,float, varchar, int, timestamp, mysqlEnum, date, primaryKey, boolean} from 'drizzle-orm/mysql-core';
 
 
   
@@ -7,7 +6,7 @@ export const Role = mysqlTable('role', {
   id: int ('id_role').primaryKey().autoincrement(),
   statuUser: mysqlEnum(['admin', 'User']),
   creer: timestamp('cree_le').defaultNow().notNull(),
-  mod: timestamp('mod_le').defaultNow().notNull(),
+   mod: timestamp('mod_le').defaultNow().notNull(),
 })
 
   
@@ -18,8 +17,8 @@ export const Role = mysqlTable('role', {
   email: varchar('email', { length: 255 }).notNull().unique(),
   specialite: varchar('specialite', {length: 255}).notNull(),
   tel: varchar('tel', {length: 25}).notNull(),
-  passeword:varchar('password', {length: 15}),
-  id_role: int('id_role').notNull().references(() => Role.id)
+  passeword:varchar('password', {length: 255}),
+  id_role: int('id_role').references(() => Role.id, {onDelete: 'cascade'})
 });
 
 
@@ -57,7 +56,7 @@ export const note = mysqlTable('note', {
 
 export const classe = mysqlTable('classe', {
   id: int('id_classe').primaryKey().autoincrement(),
-  niveau: varchar('niveau', {length: 30}).notNull(),
+  niveau: varchar('niveau', {length: 30}).notNull().unique(),
   cycle: varchar('cycle', {length:20 }),
   sous_section: varchar('sous_section', {length:30}).notNull(),
   creer: timestamp('cree_le').defaultNow().notNull(),
@@ -97,7 +96,7 @@ export const matieresalle = mysqlTable('matieresalle',{
   
 },
 (table) => [
-    primaryKey({name:'cle_primaire', columns:[table.id_matiere, table.id_salle]})
+    primaryKey({columns:[table.id_matiere, table.id_salle]})
 ]
 )
 
@@ -110,7 +109,7 @@ export const usermatiere = mysqlTable('usermatiere', {
   },
 
   (table) => [
-    primaryKey({name:'clePrimaire', columns:[table.id_matiere,  table.id_ur]})
+    primaryKey({columns:[table.id_matiere,  table.id_ur]})
   ]
 
 )
@@ -123,7 +122,7 @@ export const elevesalle = mysqlTable('elevesalle', {
   annee: int('annee').notNull()
 },
 (table) => [
-  primaryKey({name:'cle_primaire', columns:[table.id_ele, table.id_salle]})
+  primaryKey({columns:[table.id_ele, table.id_salle]})
 ])
 
 
@@ -135,6 +134,6 @@ export const usersame= mysqlTable('usersalle', {
 },
 
 (table) => [
-  primaryKey({name:'preimary_key', columns:[table.id_salle, table.id_ur]})
+  primaryKey({columns:[table.id_salle, table.id_ur]})
 
 ])
