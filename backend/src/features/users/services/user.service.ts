@@ -7,8 +7,8 @@ const schema = z.object({
     email: z.email(),
     specialite: z.string(),
     tel: z.string(),
-    password: z.string().min(4).max(15),
-    id_role: z.coerce.number()
+    passeword: z.string().min(4).max(15),
+    id_role: z.number()
 })
 
 
@@ -16,8 +16,10 @@ export class UserService{
     private userModel = new UserModel();
 
     async createUser(userData: CreateUserDTO) {
+       
         
         const result = schema.safeParse(userData);
+         console.log(result)
         const emailUsers = await this.userModel.selectEmail()
 
        if (result.success) {
@@ -25,12 +27,13 @@ export class UserService{
 
                 for (const email of emailUsers ){
                      if(email.email == userData.email){
-                       return { success: false, status: 400, message: "cet identifiant existe deja veuillez reessayez" };
+                       return { success: false, status: 409, message: "cet identifiant existe deja veuillez reessayer" };
                      }
                 }
 
                 
                 await this.userModel.createUser(userData);
+                console.log('ici')
     
                 return { success: true, status: 201 };
             } catch (error) {

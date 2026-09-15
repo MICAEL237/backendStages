@@ -16,8 +16,8 @@ export const Role = mysqlTable('role', {
   name: varchar('name', { length: 255 }).notNull(),
   email: varchar('email', { length: 255 }).notNull().unique(),
   specialite: varchar('specialite', {length: 255}).notNull(),
-  tel: varchar('tel', {length: 25}).notNull(),
-  passeword:varchar('password', {length: 255}),
+  tel: varchar('tel', {length: 25}).notNull().unique(),
+  passeword:varchar('password', {length: 255}).notNull(),
   id_role: int('id_role').references(() => Role.id, {onDelete: 'cascade'})
 });
 

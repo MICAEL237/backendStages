@@ -11,9 +11,11 @@ export class ControllerCourses{
         const intitule = req.body 
        // const intitule = req.params.intitule
 
-        const result = serviceCourses.create(intitule)
+        const result = await serviceCourses.create(intitule)
+       
 
-        if(!(await result).success){
+        if(!result){
+            
             return res.status(400).json({success: false, message:'Une erreur s\'est produite lors de la cretation de la matiere'})
         }
 

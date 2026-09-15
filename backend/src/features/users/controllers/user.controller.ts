@@ -6,13 +6,13 @@ export class UserController {
         const body = req.body;
 
         console.log(body)
-         console.log('ici')
+         
 
         const userService = new UserService();
 
        
         const results = await userService.createUser(body)
-        console.log('la')
+        
         
 
         if (results.success){

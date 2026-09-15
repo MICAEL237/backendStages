@@ -3,6 +3,6 @@ export interface CreateUserDTO {
     email: string,
     specialite: string,
     tel: string,
-    password: string,
+    passeword: string,
     id_role: number
 }

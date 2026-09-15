@@ -21,7 +21,7 @@ export class ServiceClasse{
         if (result.success){
             try {
                 this.modelClass.createClasse(dataClasse)
-                console.log('Creation reussi dans services')
+                console.log('ok creation reussi dans services')
                 
             } catch (error) {
                 console.log('Erreur Creerclasse services: ', error)

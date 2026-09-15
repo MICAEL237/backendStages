@@ -1,15 +1,14 @@
 import { db } from '../../../db/index.js'
 import * as model from '../../../db/schema.js'
 import { eq } from 'drizzle-orm'
+import type { coursesDIO } from '../type.js'
 
 
 export class ModelCourses{
 
-    async create(intitule: string){
+    async create(intitule: coursesDIO){
         try {
-                await db.insert(model.matiere).values({
-                intitule: intitule
-            })
+                await db.insert(model.matiere).values(intitule)
             console.log('Insertion matiere terminer')
         } catch (error){
             console.log('Erreur createMatiere model: ', error)

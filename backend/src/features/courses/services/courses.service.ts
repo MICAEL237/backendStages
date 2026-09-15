@@ -1,21 +1,22 @@
 import { ModelCourses } from "../models/courses.model.js";
 import {  z } from 'zod'
+import type { coursesDIO } from "../type.js";
 
 const data = z.object({
-    intitule: z.string
+    intitule: z.string()
 })
 
 export class ServicesCourses{
 
       
-
-    async create(intitule: string){
-       const  modelCourses = new ModelCourses()
-       const   result   = data.safeParse(intitule)
+    private modelCourses = new ModelCourses()
+    async create(intitule: coursesDIO){
+       
+       const  result   = data.safeParse(intitule)
 
        if(result.success){
         try {
-           await modelCourses.create(intitule)
+            this.modelCourses.create(intitule)
            console.log('ok createMatiere')
         } catch (error) {
             console.log('Erreur creationMatiere service')

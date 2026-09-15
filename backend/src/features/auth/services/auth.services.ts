@@ -9,7 +9,7 @@ export class AuthServices{
     model = new UserModel()
 
     async Login(AuthData: AuthTD){
-
+      console.log(AuthData)
        const UserINFO = await this.model.findUserINFO(AuthData.email)
        const user =(AuthData.email === UserINFO[0]?.email && AuthData.password === UserINFO[0]?.passeword)
 
@@ -17,7 +17,7 @@ export class AuthServices{
          return {success: false, status:401, message: "Identifiant(email et mot de passe ) nom valide veuillez reessayer"}
        }
 
-       const secret_jwt = (process.env.JWT_SECRET!) 
+        const  secret_jwt = (process.env.JWT_SECRET!) 
 
        const User = await this.model.fineUser(AuthData.email) 
 
@@ -31,7 +31,7 @@ export class AuthServices{
 
         const decoded = jwt.verify(token, secret_jwt) 
         
-        return [token, decoded]
+        return token
 
     }
 }
