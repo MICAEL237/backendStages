@@ -1,0 +1,1445 @@
+{
+  "version": "6",
+  "dialect": "mysql",
+  "id": "31449abb-00b9-45a9-aa72-a035b89d8e6a",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "ddl": [
+    {
+      "name": "role",
+      "entityType": "tables"
+    },
+    {
+      "name": "classe",
+      "entityType": "tables"
+    },
+    {
+      "name": "eleve",
+      "entityType": "tables"
+    },
+    {
+      "name": "elevesalle",
+      "entityType": "tables"
+    },
+    {
+      "name": "matiere",
+      "entityType": "tables"
+    },
+    {
+      "name": "matieresalle",
+      "entityType": "tables"
+    },
+    {
+      "name": "note",
+      "entityType": "tables"
+    },
+    {
+      "name": "salles",
+      "entityType": "tables"
+    },
+    {
+      "name": "serie",
+      "entityType": "tables"
+    },
+    {
+      "name": "serieclasse",
+      "entityType": "tables"
+    },
+    {
+      "name": "usermatiere",
+      "entityType": "tables"
+    },
+    {
+      "name": "users",
+      "entityType": "tables"
+    },
+    {
+      "name": "usersalle",
+      "entityType": "tables"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": true,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_role",
+      "entityType": "columns",
+      "table": "role"
+    },
+    {
+      "type": "enum('admin','User')",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "statuUser",
+      "entityType": "columns",
+      "table": "role"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "cree_le",
+      "entityType": "columns",
+      "table": "role"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "mod_le",
+      "entityType": "columns",
+      "table": "role"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": true,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_classe",
+      "entityType": "columns",
+      "table": "classe"
+    },
+    {
+      "type": "varchar(30)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "niveau",
+      "entityType": "columns",
+      "table": "classe"
+    },
+    {
+      "type": "varchar(20)",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "cycle",
+      "entityType": "columns",
+      "table": "classe"
+    },
+    {
+      "type": "enum('Anglophone','Francophone')",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "sous_section",
+      "entityType": "columns",
+      "table": "classe"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "cree_le",
+      "entityType": "columns",
+      "table": "classe"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "mod_le",
+      "entityType": "columns",
+      "table": "classe"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": true,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_ele",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "varchar(20)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "matricule",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "nom",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "prenom",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "date",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "date_naiss",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "lieu_naiss",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "enum('M','F')",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "sexe",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "cree_le",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "mod_le",
+      "entityType": "columns",
+      "table": "eleve"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_salle",
+      "entityType": "columns",
+      "table": "elevesalle"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_ele",
+      "entityType": "columns",
+      "table": "elevesalle"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "annee",
+      "entityType": "columns",
+      "table": "elevesalle"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": true,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_matiere",
+      "entityType": "columns",
+      "table": "matiere"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "intitule",
+      "entityType": "columns",
+      "table": "matiere"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "cree_le",
+      "entityType": "columns",
+      "table": "matiere"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "mod_le",
+      "entityType": "columns",
+      "table": "matiere"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_matiere",
+      "entityType": "columns",
+      "table": "matieresalle"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_salle",
+      "entityType": "columns",
+      "table": "matieresalle"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "coef",
+      "entityType": "columns",
+      "table": "matieresalle"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "annee",
+      "entityType": "columns",
+      "table": "matieresalle"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": true,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_note",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "float",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "valeur",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "sequence",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "cree_le",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "mod_le",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "varchar(10)",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "anneeScolaire",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "1",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "coef",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_matiere",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_ele",
+      "entityType": "columns",
+      "table": "note"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": true,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_salle",
+      "entityType": "columns",
+      "table": "salles"
+    },
+    {
+      "type": "varchar(20)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "nom_salle",
+      "entityType": "columns",
+      "table": "salles"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "effectif",
+      "entityType": "columns",
+      "table": "salles"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "cree_le",
+      "entityType": "columns",
+      "table": "salles"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "mod_le",
+      "entityType": "columns",
+      "table": "salles"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_classe",
+      "entityType": "columns",
+      "table": "salles"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_serie",
+      "entityType": "columns",
+      "table": "salles"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": true,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_serie",
+      "entityType": "columns",
+      "table": "serie"
+    },
+    {
+      "type": "varchar(20)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "intitule",
+      "entityType": "columns",
+      "table": "serie"
+    },
+    {
+      "type": "varchar(20)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "code",
+      "entityType": "columns",
+      "table": "serie"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "cree_le",
+      "entityType": "columns",
+      "table": "serie"
+    },
+    {
+      "type": "timestamp",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": "(now())",
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "mod_le",
+      "entityType": "columns",
+      "table": "serie"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_serie",
+      "entityType": "columns",
+      "table": "serieclasse"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_classe",
+      "entityType": "columns",
+      "table": "serieclasse"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "annee",
+      "entityType": "columns",
+      "table": "serieclasse"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "int_ur",
+      "entityType": "columns",
+      "table": "usermatiere"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_matiere",
+      "entityType": "columns",
+      "table": "usermatiere"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "annee",
+      "entityType": "columns",
+      "table": "usermatiere"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": true,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_ur",
+      "entityType": "columns",
+      "table": "users"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "users"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "email",
+      "entityType": "columns",
+      "table": "users"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "specialite",
+      "entityType": "columns",
+      "table": "users"
+    },
+    {
+      "type": "varchar(25)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "tel",
+      "entityType": "columns",
+      "table": "users"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "password",
+      "entityType": "columns",
+      "table": "users"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_role",
+      "entityType": "columns",
+      "table": "users"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "int_ur",
+      "entityType": "columns",
+      "table": "usersalle"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "id_salle",
+      "entityType": "columns",
+      "table": "usersalle"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "annee",
+      "entityType": "columns",
+      "table": "usersalle"
+    },
+    {
+      "type": "boolean",
+      "notNull": true,
+      "autoIncrement": false,
+      "default": null,
+      "onUpdateNow": false,
+      "onUpdateNowFsp": null,
+      "charSet": null,
+      "collation": null,
+      "generated": null,
+      "name": "titulaire",
+      "entityType": "columns",
+      "table": "usersalle"
+    },
+    {
+      "columns": [
+        "id_ele",
+        "id_salle"
+      ],
+      "name": "PRIMARY",
+      "table": "elevesalle",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_matiere",
+        "id_salle"
+      ],
+      "name": "PRIMARY",
+      "table": "matieresalle",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_serie",
+        "id_classe"
+      ],
+      "name": "PRIMARY",
+      "table": "serieclasse",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_matiere",
+        "int_ur"
+      ],
+      "name": "PRIMARY",
+      "table": "usermatiere",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_salle",
+        "int_ur"
+      ],
+      "name": "PRIMARY",
+      "table": "usersalle",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_role"
+      ],
+      "name": "PRIMARY",
+      "table": "role",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_classe"
+      ],
+      "name": "PRIMARY",
+      "table": "classe",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_ele"
+      ],
+      "name": "PRIMARY",
+      "table": "eleve",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_matiere"
+      ],
+      "name": "PRIMARY",
+      "table": "matiere",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_note"
+      ],
+      "name": "PRIMARY",
+      "table": "note",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_salle"
+      ],
+      "name": "PRIMARY",
+      "table": "salles",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_serie"
+      ],
+      "name": "PRIMARY",
+      "table": "serie",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id_ur"
+      ],
+      "name": "PRIMARY",
+      "table": "users",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        {
+          "value": "niveau",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "using": null,
+      "algorithm": null,
+      "lock": null,
+      "nameExplicit": false,
+      "name": "niveau_unique",
+      "table": "classe",
+      "entityType": "indexes"
+    },
+    {
+      "columns": [
+        {
+          "value": "matricule",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "using": null,
+      "algorithm": null,
+      "lock": null,
+      "nameExplicit": false,
+      "name": "matricule_unique",
+      "table": "eleve",
+      "entityType": "indexes"
+    },
+    {
+      "columns": [
+        {
+          "value": "nom_salle",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "using": null,
+      "algorithm": null,
+      "lock": null,
+      "nameExplicit": false,
+      "name": "nom_salle_unique",
+      "table": "salles",
+      "entityType": "indexes"
+    },
+    {
+      "columns": [
+        {
+          "value": "code",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "using": null,
+      "algorithm": null,
+      "lock": null,
+      "nameExplicit": false,
+      "name": "code_unique",
+      "table": "serie",
+      "entityType": "indexes"
+    },
+    {
+      "columns": [
+        {
+          "value": "email",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "using": null,
+      "algorithm": null,
+      "lock": null,
+      "nameExplicit": false,
+      "name": "email_unique",
+      "table": "users",
+      "entityType": "indexes"
+    },
+    {
+      "columns": [
+        {
+          "value": "tel",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "using": null,
+      "algorithm": null,
+      "lock": null,
+      "nameExplicit": false,
+      "name": "tel_unique",
+      "table": "users",
+      "entityType": "indexes"
+    },
+    {
+      "columns": [
+        "id_salle"
+      ],
+      "tableTo": "salles",
+      "columnsTo": [
+        "id_salle"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "elevesalle_id_salle_salles_id_salle_fkey",
+      "entityType": "fks",
+      "table": "elevesalle"
+    },
+    {
+      "columns": [
+        "id_ele"
+      ],
+      "tableTo": "eleve",
+      "columnsTo": [
+        "id_ele"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "elevesalle_id_ele_eleve_id_ele_fkey",
+      "entityType": "fks",
+      "table": "elevesalle"
+    },
+    {
+      "columns": [
+        "id_matiere"
+      ],
+      "tableTo": "matiere",
+      "columnsTo": [
+        "id_matiere"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "matieresalle_id_matiere_matiere_id_matiere_fkey",
+      "entityType": "fks",
+      "table": "matieresalle"
+    },
+    {
+      "columns": [
+        "id_salle"
+      ],
+      "tableTo": "salles",
+      "columnsTo": [
+        "id_salle"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "matieresalle_id_salle_salles_id_salle_fkey",
+      "entityType": "fks",
+      "table": "matieresalle"
+    },
+    {
+      "columns": [
+        "id_matiere"
+      ],
+      "tableTo": "matiere",
+      "columnsTo": [
+        "id_matiere"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "NO ACTION",
+      "nameExplicit": false,
+      "name": "note_id_matiere_matiere_id_matiere_fkey",
+      "entityType": "fks",
+      "table": "note"
+    },
+    {
+      "columns": [
+        "id_ele"
+      ],
+      "tableTo": "eleve",
+      "columnsTo": [
+        "id_ele"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "NO ACTION",
+      "nameExplicit": false,
+      "name": "note_id_ele_eleve_id_ele_fkey",
+      "entityType": "fks",
+      "table": "note"
+    },
+    {
+      "columns": [
+        "id_classe"
+      ],
+      "tableTo": "classe",
+      "columnsTo": [
+        "id_classe"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "nameExplicit": false,
+      "name": "salles_id_classe_classe_id_classe_fkey",
+      "entityType": "fks",
+      "table": "salles"
+    },
+    {
+      "columns": [
+        "id_serie"
+      ],
+      "tableTo": "serie",
+      "columnsTo": [
+        "id_serie"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "salles_id_serie_serie_id_serie_fkey",
+      "entityType": "fks",
+      "table": "salles"
+    },
+    {
+      "columns": [
+        "id_serie"
+      ],
+      "tableTo": "serie",
+      "columnsTo": [
+        "id_serie"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "serieclasse_id_serie_serie_id_serie_fkey",
+      "entityType": "fks",
+      "table": "serieclasse"
+    },
+    {
+      "columns": [
+        "id_classe"
+      ],
+      "tableTo": "classe",
+      "columnsTo": [
+        "id_classe"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "serieclasse_id_classe_classe_id_classe_fkey",
+      "entityType": "fks",
+      "table": "serieclasse"
+    },
+    {
+      "columns": [
+        "int_ur"
+      ],
+      "tableTo": "users",
+      "columnsTo": [
+        "id_ur"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "usermatiere_int_ur_users_id_ur_fkey",
+      "entityType": "fks",
+      "table": "usermatiere"
+    },
+    {
+      "columns": [
+        "id_matiere"
+      ],
+      "tableTo": "matiere",
+      "columnsTo": [
+        "id_matiere"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "usermatiere_id_matiere_matiere_id_matiere_fkey",
+      "entityType": "fks",
+      "table": "usermatiere"
+    },
+    {
+      "columns": [
+        "id_role"
+      ],
+      "tableTo": "role",
+      "columnsTo": [
+        "id_role"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "users_id_role_role_id_role_fkey",
+      "entityType": "fks",
+      "table": "users"
+    },
+    {
+      "columns": [
+        "int_ur"
+      ],
+      "tableTo": "users",
+      "columnsTo": [
+        "id_ur"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "usersalle_int_ur_users_id_ur_fkey",
+      "entityType": "fks",
+      "table": "usersalle"
+    },
+    {
+      "columns": [
+        "id_salle"
+      ],
+      "tableTo": "salles",
+      "columnsTo": [
+        "id_salle"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "usersalle_id_salle_salles_id_salle_fkey",
+      "entityType": "fks",
+      "table": "usersalle"
+    }
+  ],
+  "renames": []
+}

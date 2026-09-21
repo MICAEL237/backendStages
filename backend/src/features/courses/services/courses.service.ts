@@ -1,11 +1,16 @@
 import { ModelCourses } from "../models/courses.model.js";
 import {  z } from 'zod'
-import type { coursesDIO } from "../type.js";
+import type { coursesDIO, NDTO } from "../type.js";
 
 const data = z.object({
     intitule: z.string()
 })
 
+
+const dataNDTO = z.object({
+    annee: z.number(), 
+    salle: z.string()
+})
 export class ServicesCourses{
 
       
@@ -43,6 +48,20 @@ export class ServicesCourses{
        }
 
        return result
+    }
+
+    async UserClasse(data: NDTO){
+        const modelCourses = new ModelCourses()
+        const verify = dataNDTO.safeParse(data)
+
+        if(verify.success){
+            try {
+                modelCourses.UserClasse(data)
+            } catch (error) {
+                
+            }
+        }
+
     }
 
 }

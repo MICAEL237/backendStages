@@ -52,6 +52,7 @@ export class ControllerStudent{
     static async delete(req: Request, res: Response){
         const  modelStudent = new ModelStudent()
         const matricule = req.params.matricule
+        console.log(matricule)
 
         if(!matricule || Array.isArray(matricule)){
             return res.status(400).json({
@@ -60,7 +61,7 @@ export class ControllerStudent{
             })
         }
         try {
-            console.log('ok')
+            console.log('ok...')
             await modelStudent.delete(matricule)
             return res.status(200).json({
                 success: true,
@@ -70,5 +71,89 @@ export class ControllerStudent{
             console.log('probleme deleteStudent controller: ', error)
         }
 
+    }
+
+
+    static async NoteMoyenne(req: Request, res: Response ){
+        const body = req.body
+         const serviceStudent = new ServiceStudent()
+         
+         
+
+         try {
+            const NoteCoefEl = await serviceStudent.NoteMoyenne(body)
+             
+
+            
+
+            if(!NoteCoefEl?.FinalObjet){
+                return res.status(404).json({sucess: false, message:"aucune donnees recuperer service studentMoy"})
+            }
+
+            if(!NoteCoefEl?.res){
+                return res.status(400).json({sucess: false, message:"Veuillez entrer des donnees valides..."})
+            }
+
+
+
+            return res.status(200).json({success: true, message:"recuperer avec succes", datat: NoteCoefEl.FinalObjet})
+         } catch (error) {
+            return res.status(500).json({sucess: false, message:"probleme survenu lorsde l'execution studentMoy "})
+
+         }
+    }
+
+
+      static async ListeNoteMat(req: Request, res: Response ){
+         const serviceStudent = new ServiceStudent()
+         const body = req.body
+
+        
+
+         try {
+            const NoteCoefMat = await serviceStudent.ListeNoteMat(body)
+
+            if(!NoteCoefMat?.FinalObjet){
+                return res.status(404).json({sucess: false, message:"aucune donnees recuperer service studentMoy"})
+            }
+
+            if(!NoteCoefMat?.res){
+                return res.status(400).json({sucess: false, message:"Mauvaise donnees entree service studentMoy"})
+
+            }
+
+            return res.status(200).json({success: true, message:"recuperer avec succes Liste des Note par matiere", data: NoteCoefMat?.FinalObjet})
+         } catch (error) {
+            return res.status(500).json({sucess: false, message:"probleme survenu lorsde l'execution: ", error})
+
+         }
+    }
+
+
+
+     static async ListeElClass(req: Request, res: Response ){
+         const serviceStudent = new ServiceStudent()
+         const body = req.body
+
+        
+
+         try {
+            const NoteCoefMat = await serviceStudent.ListeElClass(body)
+
+            if(!NoteCoefMat?.FinalObjet){
+                return res.status(404).json({sucess: false, message:"aucune donnees recuperer service studentMoy"})
+            }
+
+            if(!NoteCoefMat.result){
+                return res.status(400).json({sucess: false, message:"Mauvaise donnees entree service studentMoy"})
+
+            }
+            console.log( )
+
+            return res.status(200).json({success: true, message:"recuperer avec succes Liste des Note par matiere", data: NoteCoefMat?.FinalObjet})
+         } catch (error) {
+            return res.status(500).json({sucess: false, message:"probleme survenu lorsde l'execution: ", error})
+
+         }
     }
 }

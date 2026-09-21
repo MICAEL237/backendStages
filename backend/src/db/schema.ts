@@ -1,4 +1,4 @@
-import { mysqlTable,float, varchar, int, timestamp, mysqlEnum, date, primaryKey, boolean} from 'drizzle-orm/mysql-core';
+import { mysqlTable,float, varchar, int, timestamp, mysqlEnum, date, primaryKey, boolean, check} from 'drizzle-orm/mysql-core';
 
 
   
@@ -25,6 +25,7 @@ export const Role = mysqlTable('role', {
 export const  matiere = mysqlTable('matiere', {
   id: int('id_matiere').primaryKey().autoincrement(),
   intitule: varchar('intitule', {length: 255}),
+  groupe:mysqlEnum(['Groupe 1', 'Groupe 2', 'Groupe 3']).notNull().default('Groupe 1'),
   creer: timestamp('cree_le').defaultNow().notNull(),
   mod: timestamp('mod_le').defaultNow().notNull(),
 })
@@ -48,8 +49,10 @@ export const note = mysqlTable('note', {
   creer: timestamp('cree_le').defaultNow().notNull(),
   mod: timestamp('mod_le').defaultNow().notNull(),
   annee: varchar('anneeScolaire', {length: 10}),
+  coef: int('coef').notNull().default(1),
   id_mat: int('id_matiere').references(() => matiere.id, {onUpdate:'cascade'}),
   id_ele: int('id_ele').references(() => eleve.id, {onUpdate:'cascade'}),
+
 
 })
 
@@ -58,7 +61,7 @@ export const classe = mysqlTable('classe', {
   id: int('id_classe').primaryKey().autoincrement(),
   niveau: varchar('niveau', {length: 30}).notNull().unique(),
   cycle: varchar('cycle', {length:20 }),
-  sous_section: varchar('sous_section', {length:30}).notNull(),
+  sous_section: mysqlEnum(['Anglophone', 'Francophone']),
   creer: timestamp('cree_le').defaultNow().notNull(),
   mod: timestamp('mod_le').defaultNow().notNull(),
   
@@ -102,7 +105,7 @@ export const matieresalle = mysqlTable('matieresalle',{
 
 
 export const usermatiere = mysqlTable('usermatiere', {
-  id_ur: int('int_ur').references(() => users.id, {onDelete:'cascade', onUpdate:'cascade'}),
+  id_ur: int('id_ur').references(() => users.id, {onDelete:'cascade', onUpdate:'cascade'}),
   id_matiere: int('id_matiere').references(() => matiere.id, {onDelete:'cascade', onUpdate:'cascade'}),
   annee: int('annee').notNull()
 
@@ -126,8 +129,10 @@ export const elevesalle = mysqlTable('elevesalle', {
 ])
 
 
-export const usersame= mysqlTable('usersalle', {
-    id_ur: int('int_ur').references(() => users.id, {onDelete:'cascade', onUpdate:'cascade'}),
+
+
+export const usersalle= mysqlTable('usersalle', {
+    id_ur: int('id_ur').references(() => users.id, {onDelete:'cascade', onUpdate:'cascade'}),
     id_salle: int('id_salle').references(() => salle.id, {onDelete:'cascade', onUpdate:'cascade'}),
     annee: int('annee').notNull(),
     titulaire: boolean('titulaire').notNull()
@@ -136,4 +141,16 @@ export const usersame= mysqlTable('usersalle', {
 (table) => [
   primaryKey({columns:[table.id_salle, table.id_ur]})
 
+])
+
+
+
+
+export const serieclasse = mysqlTable('serieclasse', {
+  id_serie: int('id_serie').references(() => serie.id, {onDelete:'cascade', onUpdate:'cascade'}),
+  id_classe: int('id_classe').references(() => classe.id, {onDelete:'cascade', onUpdate:'cascade'}),
+  annee: int('annee').notNull()
+},
+(table) => [
+  primaryKey({columns:[table.id_serie, table.id_classe]})
 ])

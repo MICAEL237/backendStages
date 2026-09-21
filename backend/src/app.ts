@@ -16,11 +16,14 @@ app.get("/health", (req: Request, res: Response) => {
     res.json({ ok: true })
 })
 
-app.use("/api/v1/users", userRouter)
+
 app.use("/api/v1/auth", AuthRouter)
-app.use('/api/v1/classe',AuthMiddleware.AuthVerrify,MiddlewareUser.IsAdamin, ClassRouter)
-app.use("/api/v1/courses",AuthMiddleware.AuthVerrify,MiddlewareUser.IsAdamin, coursesRouter)
-app.use("/api/v1/student",AuthMiddleware.AuthVerrify,MiddlewareUser.IsAdamin, routerStudent)
+MiddlewareUser.IsAdamin
+AuthMiddleware.AuthVerrify
+app.use("/api/v1/users", userRouter)
+app.use('/api/v1/classe', ClassRouter)
+app.use("/api/v1/courses", coursesRouter)
+app.use("/api/v1/student", routerStudent)
 
 
 app.listen(4000, () => {

@@ -7,3 +7,9 @@ export interface StudentDIO{
     sexe: "M" | "F"
 
 }
+
+
+export interface StudentNDTO{
+    annee: number, 
+    salle: string
+}
