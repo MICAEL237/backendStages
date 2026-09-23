@@ -18,8 +18,9 @@ app.get("/health", (req: Request, res: Response) => {
 
 
 app.use("/api/v1/auth", AuthRouter)
-MiddlewareUser.IsAdamin
-AuthMiddleware.AuthVerrify
+
+app.use(AuthMiddleware.AuthVerrify)
+// app.use(MiddlewareUser.IsAdamin)
 app.use("/api/v1/users", userRouter)
 app.use('/api/v1/classe', ClassRouter)
 app.use("/api/v1/courses", coursesRouter)

@@ -1,6 +1,7 @@
 import {type Request,  type Response}  from "express";
 import { ServiceStudent } from "../services/student.sevice.js";
 import { ModelStudent } from "../models/students.model.js";
+import type { StudentNDTO } from "../type.js";
 
 
 export class ControllerStudent{
@@ -104,21 +105,22 @@ export class ControllerStudent{
     }
 
 
-      static async ListeNoteMat(req: Request, res: Response ){
+      static async ListeNoteMat(req: Request<StudentNDTO>, res: Response ){
          const serviceStudent = new ServiceStudent()
-         const body = req.body
+         const params = req.params
+         console.log(params)
 
         
 
          try {
-            const NoteCoefMat = await serviceStudent.ListeNoteMat(body)
+            const NoteCoefMat = await serviceStudent.ListeNoteMat(params)
 
-            if(!NoteCoefMat?.FinalObjet){
+            if(NoteCoefMat?.FinalObjet[0]?.length == 0){
                 return res.status(404).json({sucess: false, message:"aucune donnees recuperer service studentMoy"})
             }
 
-            if(!NoteCoefMat?.res){
-                return res.status(400).json({sucess: false, message:"Mauvaise donnees entree service studentMoy"})
+            if(!NoteCoefMat?.res.success){
+                return res.status(400).json({sucess: false, message:"Mauvaise donnees entree service studentMoy", data: NoteCoefMat?.res.data})
 
             }
 
@@ -131,26 +133,26 @@ export class ControllerStudent{
 
 
 
-     static async ListeElClass(req: Request, res: Response ){
+     static async ListeElClass(req: Request<StudentNDTO>, res: Response ){
          const serviceStudent = new ServiceStudent()
-         const body = req.body
+         const params = req.params
 
         
 
          try {
-            const NoteCoefMat = await serviceStudent.ListeElClass(body)
+            const NoteCoefMat = await serviceStudent.ListeElClass(params)
 
             if(!NoteCoefMat?.FinalObjet){
-                return res.status(404).json({sucess: false, message:"aucune donnees recuperer service studentMoy"})
+                return res.status(404).json({sucess: false, message:"aucune donnees recuperer service "})
             }
 
             if(!NoteCoefMat.result){
-                return res.status(400).json({sucess: false, message:"Mauvaise donnees entree service studentMoy"})
+                return res.status(400).json({sucess: false, message:"Mauvaise donnees entree service "})
 
             }
             console.log( )
 
-            return res.status(200).json({success: true, message:"recuperer avec succes Liste des Note par matiere", data: NoteCoefMat?.FinalObjet})
+            return res.status(200).json({success: true,data: NoteCoefMat?.FinalObjet})
          } catch (error) {
             return res.status(500).json({sucess: false, message:"probleme survenu lorsde l'execution: ", error})
 

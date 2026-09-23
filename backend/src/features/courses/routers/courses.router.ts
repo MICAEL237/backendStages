@@ -10,6 +10,7 @@ coursesRouter.post('/', ControllerCourses.create)
 coursesRouter.get('/', ControllerCourses.read)
 coursesRouter.put('/:intitule', ControllerCourses.update)
 coursesRouter.delete('/:intitule', ControllerCourses.delete)
+coursesRouter.get('/listes/:annee/:salle', ControllerCourses.UserClasse )
 
 
 export default coursesRouter

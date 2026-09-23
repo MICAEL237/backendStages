@@ -2,6 +2,7 @@
 import type { Request, Response } from "express";
 import { ServicesCourses } from "../services/courses.service.js";
 import { ModelCourses } from "../models/courses.model.js";
+import type { NDTO } from "../type.js";
 
 
 export class ControllerCourses{
@@ -14,7 +15,7 @@ export class ControllerCourses{
         const result = await serviceCourses.create(intitule)
        
 
-        if(!result){
+        if(!result.success){
             
             return res.status(400).json({success: false, message:'Une erreur s\'est produite lors de la cretation de la matiere'})
         }
@@ -81,6 +82,30 @@ export class ControllerCourses{
             console.log('erreur de suppenssion matiere')
             
         }
+
+    }
+
+
+
+    static async UserClasse(req: Request<NDTO>, res: Response){
+        const serviceCourses = new ServicesCourses()
+        const {annee, salle} = req.params 
+        // console.log(body)
+       // const intitule = req.params.intitule
+
+        const result = await serviceCourses.UserClasse({annee, salle} )
+       
+
+        if(!result?.verify){
+            
+            return res.status(400).json({success: false, message:'Une erreur s\'est produite lors de la lecture des  matiere'})
+        }
+
+        if(result.datas.length === 0){
+            return res.status(404).json({success: false, message:'Les informations renseigner sont innexistantes.'})
+        }
+
+        return res.status(200).json({success: true, messge:'ok Liste des matiere recue avec succes', data: result?.datas})
 
     }
 }

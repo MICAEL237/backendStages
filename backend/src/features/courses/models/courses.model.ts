@@ -55,6 +55,8 @@ export class ModelCourses{
           .innerJoin(model.matiere, eq(model.matiere.id, model.usermatiere.id_matiere))
           .innerJoin(model.salle, eq(model.usersalle.id_salle, model.salle.id))
           .where(and(eq(model.salle.nom_salle, data.salle), eq(model.usersalle.annee, data.annee)))
-}
+
+          return userSalle
+        }
 
 }

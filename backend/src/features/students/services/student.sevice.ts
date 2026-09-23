@@ -12,7 +12,7 @@ const model = z.object( {
 })
 
 const ModelND =z.object({
-    annee: z.number(), 
+    annee: z.coerce.number(), 
     salle: z.string()
 
 })

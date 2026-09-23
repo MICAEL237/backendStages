@@ -3,12 +3,13 @@ import {  z } from 'zod'
 import type { coursesDIO, NDTO } from "../type.js";
 
 const data = z.object({
-    intitule: z.string()
+    intitule: z.string(),
+    groupe: z.enum(['Groupe 1', 'Groupe 2', 'Groupe 3'])
 })
 
 
 const dataNDTO = z.object({
-    annee: z.number(), 
+    annee: z.coerce.number(), 
     salle: z.string()
 })
 export class ServicesCourses{
@@ -18,6 +19,7 @@ export class ServicesCourses{
     async create(intitule: coursesDIO){
        
        const  result   = data.safeParse(intitule)
+       console.log(result)
 
        if(result.success){
         try {
@@ -56,8 +58,10 @@ export class ServicesCourses{
 
         if(verify.success){
             try {
-                modelCourses.UserClasse(data)
+                const datas = await  modelCourses.UserClasse(data)
+                return {datas, verify}
             } catch (error) {
+                console.log('Echec liste user service', error)
                 
             }
         }

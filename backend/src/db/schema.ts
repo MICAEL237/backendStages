@@ -1,6 +1,4 @@
 import { mysqlTable,float, varchar, int, timestamp, mysqlEnum, date, primaryKey, boolean, check} from 'drizzle-orm/mysql-core';
-
-
   
 export const Role = mysqlTable('role', {
   id: int ('id_role').primaryKey().autoincrement(),
