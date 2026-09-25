@@ -21,7 +21,7 @@ export class AuthController{
             return res.status(400).json({ success: false, messsage: 'echec'})
         }
 
-        
+        // console.log(token?.token)
         return res.status(200).json({success: true, message: 'Authentiication valider', token: token?.token})
 
         

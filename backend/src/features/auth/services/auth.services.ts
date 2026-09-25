@@ -13,12 +13,12 @@ export class AuthServices {
   model = new UserModel();
 
   async Login(AuthData: AuthTD) {
-    console.log(AuthData);
+    // console.log(AuthData)
     const Resulte = model.safeParse(AuthData);
     console.log(Resulte);
     if (Resulte.success) {
       const UserINFO = await this.model.findUserINFO(AuthData.email);
-      console.log(UserINFO)
+      // console.log(UserINFO)
       const user =
         AuthData.email === UserINFO[0]?.email &&
         AuthData.passeword === UserINFO[0]?.passeword;
@@ -35,7 +35,7 @@ export class AuthServices {
           name: User[0]?.name,
           role: User[0]?.id_role,
         };
-        console.log(payload)
+        // console.log(payload)
 
         const token = jwt.sign(payload, secret_jwt, { expiresIn: '4h' });
         return { token, Resulte, user };

@@ -3,12 +3,12 @@ import type { CreateUserDTO } from "../type.js";
 import * as z from "zod";
 
 const schema = z.object({
-    name: z.string(),
-    email: z.email(),
-    specialite: z.string(),
-    tel: z.string(),
-    passeword: z.string().min(4).max(15),
-    id_role: z.number()
+    name: z.string('nom invalide'),
+    email: z.email('email nom conforme'),
+    specialite: z.string('mal ecrit'),
+    tel: z.string('tel invalide'),
+    passeword: z.string('invalid passeword').min(4).max(15),
+    id_role: z.coerce.number('id invalide')
 })
 
 

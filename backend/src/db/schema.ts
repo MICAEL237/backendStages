@@ -4,7 +4,7 @@ export const Role = mysqlTable('role', {
   id: int ('id_role').primaryKey().autoincrement(),
   statuUser: mysqlEnum(['admin', 'User']),
   creer: timestamp('cree_le').defaultNow().notNull(),
-   mod: timestamp('mod_le').defaultNow().notNull(),
+   mod: timestamp('mod_le').onUpdateNow().notNull(),
 })
 
   
@@ -22,10 +22,10 @@ export const Role = mysqlTable('role', {
 
 export const  matiere = mysqlTable('matiere', {
   id: int('id_matiere').primaryKey().autoincrement(),
-  intitule: varchar('intitule', {length: 255}),
+  intitule: varchar('intitule', {length: 255}).unique(),
   groupe:mysqlEnum(['Groupe 1', 'Groupe 2', 'Groupe 3']).notNull().default('Groupe 1'),
   creer: timestamp('cree_le').defaultNow().notNull(),
-  mod: timestamp('mod_le').defaultNow().notNull(),
+  mod: timestamp('mod_le').onUpdateNow().notNull(),
 })
 
 export const eleve = mysqlTable('eleve', {
@@ -37,7 +37,7 @@ export const eleve = mysqlTable('eleve', {
   lieu: varchar('lieu_naiss', {length: 255}).notNull(),
   sexe: mysqlEnum(['M', 'F']).notNull(),
   creer: timestamp('cree_le').defaultNow().notNull(),
-  mod: timestamp('mod_le').defaultNow().notNull(),
+  mod: timestamp('mod_le').onUpdateNow().notNull(),
 })
 
 export const note = mysqlTable('note', {
@@ -45,7 +45,7 @@ export const note = mysqlTable('note', {
   valeur: float('valeur').notNull(),
   sequence: int('sequence').notNull(),
   creer: timestamp('cree_le').defaultNow().notNull(),
-  mod: timestamp('mod_le').defaultNow().notNull(),
+  mod: timestamp('mod_le').notNull().onUpdateNow(),
   annee: varchar('anneeScolaire', {length: 10}),
   coef: int('coef').notNull().default(1),
   id_mat: int('id_matiere').references(() => matiere.id, {onUpdate:'cascade'}),
@@ -61,7 +61,7 @@ export const classe = mysqlTable('classe', {
   cycle: varchar('cycle', {length:20 }),
   sous_section: mysqlEnum(['Anglophone', 'Francophone']),
   creer: timestamp('cree_le').defaultNow().notNull(),
-  mod: timestamp('mod_le').defaultNow().notNull(),
+  mod: timestamp('mod_le').onUpdateNow().notNull(),
   
 })
 
@@ -72,7 +72,7 @@ export const serie = mysqlTable('serie', {
   intitule: varchar('intitule', {length:20}).notNull(),
   code: varchar('code', {length:20}).unique().notNull(),
   creer: timestamp('cree_le').defaultNow().notNull(),
-  mod: timestamp('mod_le').defaultNow().notNull(),
+  mod: timestamp('mod_le').onUpdateNow().notNull(),
 })
 
 
@@ -83,7 +83,7 @@ export const  salle =  mysqlTable('salles', {
   nom_salle:varchar('nom_salle', {length:20}).notNull().unique(),
   effectif: int('effectif').notNull(),
   creer: timestamp('cree_le').defaultNow().notNull(),
-  mod: timestamp('mod_le').defaultNow().notNull(),
+  mod: timestamp('mod_le').onUpdateNow().notNull(),
   id_classe: int('id_classe').references(() => classe.id),
   id_serie: int('id_serie').references(() => serie.id, {onDelete:'cascade', onUpdate:'cascade'})
 }) 

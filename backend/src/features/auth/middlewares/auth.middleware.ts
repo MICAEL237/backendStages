@@ -9,6 +9,7 @@ export class AuthMiddleware{
     static AuthVerrify(req: Request, res: Response, next: NextFunction){
     const EnteteAuth = req.headers['authorization'] as string;
     const token = EnteteAuth && EnteteAuth.split(' ')[1]
+
     const  secret_jwt = (process.env.JWT_SECRET!) 
 
 
