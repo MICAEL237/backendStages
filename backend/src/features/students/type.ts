@@ -13,3 +13,8 @@ export interface StudentNDTO{
     annee: number, 
     salle: string
 }
+
+export interface StudentSDTO{
+    annee: string, 
+    salle: string
+}

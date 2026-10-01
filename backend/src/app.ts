@@ -9,11 +9,12 @@ import { AuthMiddleware } from "./features/auth/middlewares/auth.middleware.js"
 import salleRouter from "./salles/routers/salle.router.js"
 export const app = express()
 import cors from "cors"
-
+import cookieParser from 'cookie-parser'
 
 
 app.use(express.json())
 app.use(express.urlencoded())
+app.use(cookieParser())
 app.use(cors({
   origin: "http://localhost:3000",
 }));

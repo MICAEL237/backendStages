@@ -4,11 +4,14 @@ import jwt from "jsonwebtoken"
 
 
 
+
 export class AuthMiddleware{
     
     static AuthVerrify(req: Request, res: Response, next: NextFunction){
-    const EnteteAuth = req.headers['authorization'] as string;
-    const token = EnteteAuth && EnteteAuth.split(' ')[1]
+    // const EnteteAuth = req.headers['authorization'] as string;
+    // const token = EnteteAuth && EnteteAuth.split(' ')[1]
+
+    const token = req.cookies['cookie_token']
 
     const  secret_jwt = (process.env.JWT_SECRET!) 
 

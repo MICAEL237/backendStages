@@ -34,12 +34,14 @@ export class salleController{
         }
     }
 
+    
+
 
     static async read(req: Request, res: Response){
         const modelsalle = new SalleModel()
         try {
            const result =  await modelsalle.read()
-           return res.status(200).json({result})
+           return res.status(200).json({ sucess: true, data: result})
         } catch (error) {
             console.log('probleme salleListe controller', error)
             

@@ -1,7 +1,7 @@
 import {type Request,  type Response}  from "express";
 import { ServiceStudent } from "../services/student.sevice.js";
 import { ModelStudent } from "../models/students.model.js";
-import type { StudentNDTO } from "../type.js";
+import type { StudentNDTO, StudentSDTO } from "../type.js";
 
 
 export class ControllerStudent{
@@ -75,19 +75,20 @@ export class ControllerStudent{
     }
 
 
-    static async NoteMoyenne(req: Request, res: Response ){
-        const body = req.body
+    static async NoteMoyenne(req: Request<StudentSDTO>, res: Response ){
+        const {annee, salle} = req.params
          const serviceStudent = new ServiceStudent()
          
          
 
          try {
-            const NoteCoefEl = await serviceStudent.NoteMoyenne(body)
+            const NoteCoefEl = await serviceStudent.sommeCoef({annee, salle})
+            const NoteMoyenne = await serviceStudent.MoyApreciation({annee, salle})
              
 
             
 
-            if(!NoteCoefEl?.FinalObjet){
+            if(!NoteCoefEl?.objet || !NoteMoyenne){
                 return res.status(404).json({sucess: false, message:"aucune donnees recuperer service studentMoy"})
             }
 
@@ -97,7 +98,7 @@ export class ControllerStudent{
 
 
 
-            return res.status(200).json({success: true, message:"recuperer avec succes", datat: NoteCoefEl.FinalObjet})
+            return res.status(200).json({ data: NoteCoefEl.objet, NoteMoyenne})
          } catch (error) {
             return res.status(500).json({sucess: false, message:"probleme survenu lorsde l'execution studentMoy "})
 

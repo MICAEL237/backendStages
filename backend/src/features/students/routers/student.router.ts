@@ -8,7 +8,7 @@ const routerStudent = Router()
 routerStudent.post('/', ControllerStudent.create)
 routerStudent.get('/', ControllerStudent.read)
 routerStudent.delete('/:matricule', ControllerStudent.delete)
-routerStudent.post('/moy', ControllerStudent.NoteMoyenne)
+routerStudent.get('/ListSom/:annee/:salle', ControllerStudent.NoteMoyenne)
 routerStudent.get('/ListNote/:annee/:salle', ControllerStudent.ListeNoteMat)
 routerStudent.get('/ListEl/:annee/:salle', ControllerStudent.ListeElClass)
 

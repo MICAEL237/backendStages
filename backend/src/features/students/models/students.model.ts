@@ -1,7 +1,7 @@
 import * as model from '../../../db/schema.js'
-import type { StudentDIO, StudentNDTO } from '../type.js';
+import type { StudentDIO, StudentNDTO, StudentSDTO } from '../type.js';
 import { db } from '../../../db/index.js'
-import { and, asc, desc, eq, sql, sum } from 'drizzle-orm';
+import { and, desc, eq, sql } from 'drizzle-orm';
 
 
 export class ModelStudent{
@@ -82,26 +82,23 @@ export class ModelStudent{
 
 
 
-    //moyenne somme(note * coef) somme des coefficients
-    async SomCoefNote(matricule: string,  StudentNDATA: StudentNDTO, seq:number){
-        const EleId = await db.select({id: model.eleve.id}).from(model.eleve).where(eq(model.eleve.matricule, matricule))  
-        const Idsalle = await db.select({id: model.salle.id}).from(model.salle)
+    // somme(note * coef) somme des coefficients
+    async SomCoefNote(seq: number,  StudentNDATA: StudentSDTO){
+    const scoef = await db.select({
+      matricule: model.eleve.matricule,
+      sum: (sql<number>`sum(${model.note.valeur } * ${model.note.coef})`),
+      coef:(sql<number>`sum(${model.note.coef})`),
+      salle: model.salle.nom_salle,
+      rangClassement: sql<number>`DENSE_RANK() OVER (ORDER BY (sum(${model.note.valeur } * ${model.note.coef})) DESC)`
 
-        
-        const summoy = await db.select({seq: model.note.sequence, 
-            salle: model.salle.nom_salle,
-            notecoef:(sql<number>`sum(${model.note.valeur} * ${model.note.coef})`),  
-            somcoef: sql<number>`sum(${(model.note.coef)})`}).from(model.matiere)
-                    .innerJoin(model.eleve, eq(model.eleve.id, model.note.id_ele))
-                    .innerJoin(model.elevesalle, eq(model.elevesalle.id_salle, model.salle.id))
-
-                    .innerJoin(model.salle, eq(model.salle.id,  model.elevesalle.id_salle))
-                    .innerJoin(model.matiere, eq(model.matiere.id, model.note.id_mat))
-                    .where(and(eq(model.eleve.id, EleId[0]?.id!), 
-                    eq(model.note.sequence, seq), 
-                    eq(model.elevesalle.annee, StudentNDATA.annee),
-                    eq(model.salle.id, Idsalle[0]?.id!) ))
-        return summoy
+    }).from(model.salle)
+      .innerJoin(model.elevesalle, eq(model.salle.id, model.elevesalle.id_salle))
+      .innerJoin(model.eleve, eq(model.elevesalle.id_ele, model.eleve.id))
+     .innerJoin(model.note, eq(model.eleve.id, model.note.id_ele))
+     .groupBy(model.salle.nom_salle, model.eleve.matricule, model.note.sequence)
+      .where(and(eq(model.salle.nom_salle, StudentNDATA.salle), eq(model.note.annee,  '2025/2026')))
+    
+        return scoef
     }
 
     //matiere note coef coef*note pour chaque eleve groupe(matiere) salle
@@ -139,7 +136,7 @@ export class ModelStudent{
             return selct
     }
 
-
+//entete du bulletin ce qui concerne les ifos de l'eleve
 
     async InfoEtu(StudentNDATA: StudentNDTO){
         try {

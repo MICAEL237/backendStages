@@ -7,7 +7,7 @@ const schema = z.object({
     email: z.email('email nom conforme'),
     specialite: z.string('mal ecrit'),
     tel: z.string('tel invalide'),
-    passeword: z.string('invalid passeword').min(4).max(15),
+    passeword: z.string('invalid passeword').min(4).max(255),
     id_role: z.coerce.number('id invalide')
 })
 

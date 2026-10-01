@@ -1,6 +1,5 @@
 import  {type Request, type Response } from "express";
 import { AuthServices } from "../services/auth.services.js";
-import { success } from "zod";
 
 
 
@@ -20,6 +19,14 @@ export class AuthController{
         if(!token?.Resulte.success){
             return res.status(400).json({ success: false, messsage: 'echec'})
         }
+
+        res.cookie('cookie_token', token?.token, {
+            httpOnly: true,
+            secure:true,
+            sameSite:'lax',
+            maxAge: 4 * 60 * 60,
+            path: '/'
+        })
 
         // console.log(token?.token)
         return res.status(200).json({success: true, message: 'Authentiication valider', token: token?.token})

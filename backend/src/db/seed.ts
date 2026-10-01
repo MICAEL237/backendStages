@@ -88,16 +88,32 @@ config()
 
 
 
- const userSalle = await db.select({
+//  const userSalle = await db.select({
             
-            salle: model.salle.nom_salle,
-            name: model.users.name,
-            nom: model.matiere.intitule,
-        }).from(model.usersalle)
-          .innerJoin(model.users, eq(model.usersalle.id_ur, model.users.id))
-          .innerJoin(model.usermatiere, eq(model.usermatiere.id_ur, model.users.id))
-          .innerJoin(model.matiere, eq(model.matiere.id, model.usermatiere.id_matiere))
-          .innerJoin(model.salle, eq(model.usersalle.id_salle, model.salle.id))
-          .where(and ( eq(model.salle.nom_salle, '6M2'), eq(model.usersalle.annee, 2026)))
+//             salle: model.salle.nom_salle,
+//             name: model.users.name,
+//             nom: model.matiere.intitule,
+//         }).from(model.usersalle)
+//           .innerJoin(model.users, eq(model.usersalle.id_ur, model.users.id))
+//           .innerJoin(model.usermatiere, eq(model.usermatiere.id_ur, model.users.id))
+//           .innerJoin(model.matiere, eq(model.matiere.id, model.usermatiere.id_matiere))
+//           .innerJoin(model.salle, eq(model.usersalle.id_salle, model.salle.id))
+//           .where(and ( eq(model.salle.nom_salle, '6M2'), eq(model.usersalle.annee, 2026)))
 
-console.log(userSalle)
+// console.log(userSalle)
+
+
+const scoef = await db.select({
+  matricule: model.eleve.matricule,
+  sum: (sql<number>`sum(${model.note.valeur } * ${model.note.coef})`),
+  coef:(sql<number>`sum(${model.note.coef})`),
+  salle: model.salle.nom_salle
+}).from(model.salle)
+  .innerJoin(model.elevesalle, eq(model.salle.id, model.elevesalle.id_salle))
+  .innerJoin(model.eleve, eq(model.elevesalle.id_ele, model.eleve.id))
+ .innerJoin(model.note, eq(model.eleve.id, model.note.id_ele))
+ .groupBy(model.salle.nom_salle, model.eleve.matricule, model.note.sequence)
+  .where(and(eq(model.salle.nom_salle, '6M2'), eq(model.note.annee, '2025/2026'),eq(model.note.sequence, 1)))
+
+
+console.log(scoef)

@@ -3,6 +3,7 @@ import { UserModel } from '../../users/models/user.model.js';
 import type { AuthTD } from '../typeAuth.js';
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 const model = z.object({
   email: z.email(),
@@ -19,9 +20,10 @@ export class AuthServices {
     if (Resulte.success) {
       const UserINFO = await this.model.findUserINFO(AuthData.email);
       // console.log(UserINFO)
-      const user =
-        AuthData.email === UserINFO[0]?.email &&
-        AuthData.passeword === UserINFO[0]?.passeword;
+      const truePassword = await bcrypt.compare(AuthData.passeword, UserINFO[0]?.passeword! )
+      const TrueEmail =  AuthData.email === UserINFO[0]?.email
+      const user = truePassword && TrueEmail
+      
       console.log(user)
       if (user) {
        
@@ -38,6 +40,7 @@ export class AuthServices {
         // console.log(payload)
 
         const token = jwt.sign(payload, secret_jwt, { expiresIn: '4h' });
+        console.log(token)
         return { token, Resulte, user };
       }
     }

@@ -57,7 +57,7 @@ export class ControllerCourses{
         try {
             const liste = await modelCourses.read()
             console.log('ok read courses')
-            return res.status(200).json({sucess: true, message: "Liste des Matieres...", liste: liste})
+            return res.status(200).json({sucess: true, message: "Liste des Matieres...", data: liste})
             
         } catch (error) {
             console.log("prbleme dans read classee controller: ", error)
