@@ -1,0 +1,52 @@
+import { UserModel } from "../models/user.model.js";
+import type { CreateUserDTO } from "../type.js";
+import * as z from "zod";
+
+const schema = z.object({
+    name: z.string('nom invalide'),
+    email: z.email('email nom conforme'),
+    specialite: z.string('mal ecrit'),
+    tel: z.string('tel invalide'),
+    passeword: z.string('invalid passeword').min(4).max(15),
+    id_role: z.coerce.number('id invalide')
+})
+
+
+export class UserService{
+    private userModel = new UserModel();
+
+    async createUser(userData: CreateUserDTO) {
+       
+        
+        const result = schema.safeParse(userData);
+         console.log(result)
+        const emailUsers = await this.userModel.selectEmail()
+
+       if (result.success) {
+            try {
+
+                for (const email of emailUsers ){
+                     if(email.email == userData.email){
+                       return { success: false, status: 409, message: "cet identifiant existe deja veuillez reessayer" };
+                     }
+                }
+
+                
+                await this.userModel.createUser(userData);
+                console.log('ici')
+    
+                return { success: true, status: 201 };
+            } catch (error) {
+                console.error(error);
+
+                return { success: false, status: 500, message: "Une erreur est survenue lors de la verrification" };
+            }
+        }
+
+
+
+        
+
+        return { success: false, status: 400,  message: result.error.message };
+    }
+}
