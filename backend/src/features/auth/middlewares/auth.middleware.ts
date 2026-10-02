@@ -11,7 +11,7 @@ export class AuthMiddleware{
     // const EnteteAuth = req.headers['authorization'] as string;
     // const token = EnteteAuth && EnteteAuth.split(' ')[1]
 
-    const token = req.cookies['cookie_token']
+    const token = req.cookies['cookie_session']
 
     const  secret_jwt = (process.env.JWT_SECRET!) 
 

@@ -1,0 +1,10 @@
+$kind: http-request
+description: "Liste des eleve et leurs informations flitrer par salle et par annne
+\r
+
+  Methode: GEt\r
+
+  PARAMS: annee: number, salle: string"
+url: http://localhost:4000/api/v1/student/ListEl/2026/6M1
+method: GET
+order: 4484995365932110

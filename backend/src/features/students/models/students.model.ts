@@ -96,7 +96,7 @@ export class ModelStudent{
       .innerJoin(model.eleve, eq(model.elevesalle.id_ele, model.eleve.id))
      .innerJoin(model.note, eq(model.eleve.id, model.note.id_ele))
      .groupBy(model.salle.nom_salle, model.eleve.matricule, model.note.sequence)
-      .where(and(eq(model.salle.nom_salle, StudentNDATA.salle), eq(model.note.annee,  '2025/2026')))
+      .where(and(eq(model.salle.nom_salle, StudentNDATA.salle), eq(model.note.annee,  StudentNDATA.annee)))
     
         return scoef
     }

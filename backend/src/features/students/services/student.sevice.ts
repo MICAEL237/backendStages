@@ -64,10 +64,12 @@ export class ServiceStudent {
     try {
         
         let M
+        let v = 'Admis'
         const Moyenne: {
             [key: string]:{
                 moyenne: number;
                 appreciation: string;
+                validation: string;
 
             }[];
         } = {}
@@ -82,8 +84,9 @@ export class ServiceStudent {
             
              if (NoteMoyenne! < 8) {
                     M = 'Faible';
-                  } else if (NoteMoyenne! <= 9.99) {
+                  } else if (NoteMoyenne! <= 9.49) {
                     M = 'Mediocre';
+                    v = "Echec"
                   } else if (NoteMoyenne! <= 11.99) {
                     M = 'Passable';
                   } else if (NoteMoyenne! <= 13.99) {
@@ -99,7 +102,8 @@ export class ServiceStudent {
                     }
                   Moyenne[r.matricule]!.push({
                     moyenne: NoteMoyenne,
-                    appreciation: M
+                    appreciation: M,
+                    validation: v
                   })
                   console.log(Moyenne)
         }
@@ -107,8 +111,11 @@ export class ServiceStudent {
        
        console.log(Moyenne)
        return {Moyenne}
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   }
+  
 
   async ListeNoteMat(StudentNDATA: StudentNDTO) {
     const FinalObjet: {

@@ -98,7 +98,7 @@ export class ControllerStudent{
 
 
 
-            return res.status(200).json({ data: NoteCoefEl.objet, NoteMoyenne})
+            return res.status(200).json({ NoteMoyenne})
          } catch (error) {
             return res.status(500).json({sucess: false, message:"probleme survenu lorsde l'execution studentMoy "})
 

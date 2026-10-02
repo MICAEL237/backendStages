@@ -1,0 +1,7 @@
+$kind: http-request
+name: New Request
+url: "http://localhost:4000/api/v1/courses/listes/2026/6M1"
+method: GET
+examples: .resources/New Request-1.resources/examples
+order: 4362710220069443
+describe: "liste des enseignants et leur matiere classer par salle ete annee"

@@ -1,0 +1,9 @@
+$kind: http-request
+description: "LIste des moyenne rangs et appreciation somme des coef et note*coef appreciation pour chaque eleve par salleet annee \r
+
+  Methode: GEt\r
+
+  PARAMS: annee: number, salle: string"
+url: http://localhost:4000/api/v1/student/ListSom/2026/6M1
+method: GET
+order: 4484995365932110

@@ -1,8 +1,7 @@
 import { db } from '../../../db/index.js';
 import * as  schema from '../../../db/schema.js'
-import {eq} from 'drizzle-orm'
+import {and, eq} from 'drizzle-orm'
 import type { CreateUserDTO } from '../type.js';
-import { model } from 'mongoose';
 
 export class UserModel {
     async createUser(userData: CreateUserDTO) {
@@ -32,5 +31,19 @@ export class UserModel {
     }
 
 
+    async DashboardUser(email: string){
+        const infos = await db.select({
+            nom: schema.users.name,
+            matiere: schema.matiere.intitule,
+            salle: schema.salle.nom_salle,
+            annee: schema.usersalle.annee
+        }).from(schema.users)
+         .innerJoin(schema.matiere, eq(schema.usermatiere.id_matiere, schema.matiere.id))
+         .innerJoin(schema.salle, eq(schema.salle.id, schema.usersalle.id_salle))
+         .innerJoin(schema.usersalle, eq(schema.users.id, schema.usersalle.id_ur))
+         .where(and (eq(schema.users.email, email)))
+
+         return infos
+    }
 
 }
